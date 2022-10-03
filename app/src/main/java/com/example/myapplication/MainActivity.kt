@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -14,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -30,10 +32,14 @@ class MainActivity : ComponentActivity() {
             MyApplicationTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    modifier = Modifier
+                        .fillMaxSize(),
+                        //.background(Color.DarkGray),
+                    color = Color.DarkGray// MaterialTheme.colors.background
+
+
                 ) {
-                    ComposeQuadrantApp()
+                    BusinessCard("Roman Fedoniuk", "Kotlin Developer, C#/.Net, Java")
                 }
             }
         }
@@ -80,6 +86,7 @@ fun JetpackWithImage(title: String,message: String, footer: String) {
         TutorialPageText(title,message, footer)
     }
 }
+
 
 @Composable
 fun ShowCompleteTaskPage(title: String,message: String) {
@@ -170,14 +177,107 @@ private fun ComposableInfoCard(
     }
 }
 
+@Composable
+fun BusinessCard(name: String, work: String){
+    Box(
+        contentAlignment = Alignment.Center,
+    )
+    {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(
+                tint = colorResource(R.color.green_50),
+                painter = painterResource(R.drawable.ic_baseline_face_243),
+                contentDescription = "Some Main Logo",
+                modifier = Modifier
+                    .height(144.dp)
+                    .width(144.dp)
+            )
+            Text(
+                text = name,
+                fontSize = 32.sp
+            )
+            Text(
+                text = work,
+                color = colorResource(R.color.green_50)
+            )
+        }
+    }
+    Box(
+        contentAlignment = Alignment.BottomCenter,
+        modifier = Modifier
+            .padding(bottom = 15.dp)
+    ){
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 5.dp)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_baseline_call_24),
+                    contentDescription = "PhoneIcon",
+                    modifier = Modifier
+                        .weight(0.8f)
+                )
+                Text(
+                    text = "12345678910",
+                    color = colorResource(R.color.green_50),
+                    modifier = Modifier
+                        .weight(1f)
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_baseline_share_24),
+                    contentDescription = "ShareIcon",
+                    modifier = Modifier
+                        .weight(0.8f)
+                )
 
+                Text(
+                    text = "@IceKNT",
+                    color = colorResource(R.color.green_50),
+                    modifier = Modifier
+                        .weight(1f)
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_baseline_email_24),
+                    contentDescription = "ShareIcon",
+                    modifier = Modifier
+                        .weight(0.8f)
+                    )
+                Text(
+                    text = "@zona0301256",
+                    color = colorResource(R.color.green_50),
+                    modifier = Modifier
+                        .weight(1f)
+                )
+            }
+        }
+    }
+}
 
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     MyApplicationTheme {
-        ComposeQuadrantApp()
+        BusinessCard("Roman Fedoniuk", "Kotlin Developer, C#/.Net, Java")
     }
 }
 
