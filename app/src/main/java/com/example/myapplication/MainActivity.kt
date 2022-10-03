@@ -16,14 +16,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.ui.theme.MyApplicationTheme
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,10 +33,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    ShowCompleteTaskPage(
-                        "All tasks completed",
-                        "Nice work"
-                    )
+                    ComposeQuadrantApp()
                 }
             }
         }
@@ -112,60 +107,6 @@ fun ShowCompleteTaskPage(title: String,message: String) {
                 fontSize = 16.sp,
             )
         }
-}
-
-@Composable
-fun ShowQuadrant(){
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Row(
-            Modifier.weight(1f)
-        ) {
-            ShowOneRow(
-                stringResource(R.string.QuadrantTitle1),
-                stringResource(R.string.QuadrantText1) ,
-                Color.Green)
-            ShowOneRow(
-                stringResource(R.string.QuadrantTitle2),
-                stringResource(R.string.QuadrantText2) ,
-                Color.Yellow)
-        }
-        Row(Modifier.weight(1f)) {
-            ShowOneRow(
-                stringResource(R.string.QuadrantTitle3),
-                stringResource(R.string.QuadrantText3),
-                Color.Cyan)
-            ShowOneRow(
-                stringResource(R.string.QuadrantTitle4),
-                stringResource(R.string.QuadrantText4),
-                Color.LightGray
-                )
-        }
-    }
-}
-
-@Composable
-fun ShowOneRow(title: String, text: String, bgcolor: Color)
-{
-    Column(
-        modifier = Modifier
-            .background(color = bgcolor)
-            .padding(16.dp)
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-
-
-        Text(
-            text = title,
-            fontWeight = FontWeight.Bold,
-
-        )
-        Text(
-            text = text,
-            textAlign = TextAlign.Justify
-        )
-    }
 }
 
 @Composable
